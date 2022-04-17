@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcy</title>
+    <style>
+        body{
+            background-color: rgb(143, 203, 169);
+        }
+        .calculator{
+    background-color:rgb(56, 54, 56);
+    height: 281px;
+    width: 315px;
+    padding: 16px;
+    margin: 80px 0px 0px 411px;
+        }
+        #display{
+    height: 45px;
+    margin:3px;
+    width: 300px;
+    font-size:35px;
+    border-radius: 10px;
+    padding:13px 0px 0px 0px;
+    border:2px solid black;
+    font-weight:bold;
+    background-color: rgb(191, 227, 209);
+        }
+        .txt{
+   font-family:'Times New Roman', Times, serif;
+   font-weight:900;
+        }
+        .buttons{
+            text-align: center;
+            width:81px;
+            font-weight:bold;
+    height:26px;
+    border-radius:10px;
+    font-size:21px;
+    background-color: rgb(254, 254, 255);
+    display:inline-block;
+    padding: 5px;
+    margin: 2px 2px  2px 2px;
+    border: 2px solid black;
+        }
+        #btn{
+            background-color: rgb(220, 163, 58);
+        }
+        </style>
+</head>
+<body>
+    <div class="calculator">
+  <div id="display-container">
+      <p id="display"></p>
+      </div>
+<div class="buttons" data-value="1">1</div>
+<div class="buttons" data-value="2">2</div>
+<div class="buttons" data-value="3">3</div>
+<div class="buttons" data-value="4">4</div>
+<div class="buttons" data-value="5">5</div>
+<div class="buttons" data-value="6">6</div>
+<div class="buttons" data-value="7">7</div>
+<div class="buttons" data-value="8">8</div>
+<div class="buttons" data-value="9">9</div>
+<div class="buttons" class="txt" data-value="ac">ac</div>
+<div class="buttons" class="txt" data-value="+">+</div>
+<div class="buttons" class="txt" data-value="-">-</div>
+<div class="buttons" class="txt" data-value="*">*</div>
+<div class="buttons" class="txt" data-value="/">/</div>
+<div class="buttons" class="txt" id="btn" data-value="=">=</div>
+      </div>
+</body>
+<script>
+  var buttons=document.getElementsByClassName("buttons");
+  var display=document.getElementById("display" );
+  var operand1=0;
+  var operand2=null;
+  var operator=null;
+for(var i=0;i<buttons.length;i++)
+{
+    buttons[i].addEventListener('click',function()
+    {
+           var value=this.getAttribute('data-value');
+           if(value=='+'){
+           operator='+'
+         operand1 =parseFloat(display.textContent);
+         display.textContent="";
+           }
+          else if(value=='-'){
+           operator='-'
+         operand1 =parseFloat(display.textContent);
+         display.textContent="";
+           }
+          else if(value=='*'){
+           operator='*'
+         operand1 =parseFloat(display.textContent);
+         display.textContent="";
+           }
+           else if(value=="ac")
+           {
+               display.textContent="";
+           }
+          else if(value=='%'){
+           operator='%'
+         operand1 =parseFloat(display.textContent);
+         display.textContent="";}
+          else if(value=='/'){
+           operator='/'
+         operand1 =parseFloat(display.textContent);
+         display.textContent="";
+         }
+           else if(value=='='){
+              // operator='= '
+               operand2=parseFloat(display.textContent);
+             var t=eval(operand1 + " "+ operator +" " +operand2);
+              display.textContent=t;
+           }
+           else{
+               display.innerText+=value;
+           }
+    });
+}
+    </script>
+</html> 
